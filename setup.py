@@ -1,5 +1,5 @@
 from notes_generator import enharmonic_notes
-from config import *
+from user_config import *
 
 rythmic_values = [[1, '1'], [4 / 3, '2.'], [2, '2'], [8 / 3, '4.'], [4, '4'],
                   [16 / 3, '8.'], [8, '8'], [16, '16']]

@@ -1,11 +1,11 @@
 tempo = 4  # /4
 first_note = " d'"  # min "c,,," max "c'''''"
-bar_count = 4
+bar_count = 4  # num. of bars
 lowest_note = " c'"  # min "c,,," max "c'''''"
 highest_note = " e'"  # min "c,,," max "c'''''"
 rest_prob = 0  # number between 0 and 1
 
-# natural number incl. 0
+# interval probabilities, enter natural numbers incl. 0
 unison_prob = 1
 diminished_second_prob = 1
 augmented_unison_prob = 1
@@ -33,7 +33,7 @@ diminished_octave_prob = 1
 augmented_seventh_prob = 1
 octave_prob = 1
 
-# natural number incl. 0
+# pitch probabilities, enter natural numbers incl. 0
 c_prob = 1
 cis_prob = 1
 d_prob = 1

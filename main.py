@@ -17,7 +17,7 @@ semitone_degree = first_note_semitone_degree(first_note, enharmonic_notes)
 next_interval_degree = first_note_interval_degree(first_note, notes_name)
 next_semitone_degree = first_note_semitone_degree(first_note, enharmonic_notes)
 
-with open('ptest.ly', 'w') as file1:
+with open('generator.ly', 'w') as file1:
     file1.write(header)
     file1.write("{ \\time %d/4" % tempo)
     full_time = bar_count / (4 / tempo)

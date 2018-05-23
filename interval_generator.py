@@ -1,5 +1,5 @@
 from Interval import Interval
-from config import *
+from user_config import *
 
 intervals = []
 
