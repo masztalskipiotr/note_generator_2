@@ -1,8 +1,7 @@
-from random import randint, random
+from random import random
 from notes_generator import *
 from interval_generator import intervals
 from setup import *
-from Note import Note
 from main_functions import *
 
 # jeśli prawdopodobieństwo wystąpienia każdego z interwałów
@@ -25,73 +24,40 @@ with open('ptest.ly', 'w') as file1:
     first_note_generated = False  # flaga wygenerowania pierwszej nuty
     initial_pause_generated = False  # flaga wygenerowania pauzy na początku pliku
 
-    rest_evaluator = random()
-
     # generujemy pauzę z prawdopodobieństwem zdefiniowanym przez użytkownika
-    if rest_evaluator <= rest_prob:
-        # czas trwania pauzy
-        ind = randint(0, len(rythmic_values) - 1)
-        rest_duration = rythmic_values[ind]
+    if random() <= rest_prob:
 
-        # sprawdzamy czy wartość rytmiczna nie wychodzi poza ostatni takt
-        # jeśli wychodzi, to ją zmniejszamy, aż do uzyskania odpowiedniej
-        while 1 / rest_duration[0] > full_time:
-            ind += 1
-            rest_duration = rythmic_values[ind]
-
-        file1.write(" r" + rest_duration[1])
+        rest_duration = generate_pause(full_time, rythmic_values, file1)
         full_time -= 1 / rest_duration[0]
-        print("rest")
-        initial_pause_generated = True
 
     else:
+
         # pierwsza nuta
-        fnote = Note()
-        fnote.pitch = first_note
-        rvalue = choice(rythmic_values)
-        fnote.time_stamp = rvalue[0]
-        file1.write(fnote.pitch + rvalue[1])
-        print(first_note.replace(" ", ""))
-        full_time -= (1 / fnote.time_stamp)
+        f_note_duration = generate_first_note(first_note, rythmic_values, full_time, file1)
+        full_time -= (1 / f_note_duration)
         first_note_generated = True
 
     while full_time > 0:
         rest_generated = False
-        rest_evaluator = random()
 
         # generujemy pauzę z prawdopodobieństwem zdefiniowanym przez użytkownika
-        if rest_evaluator <= rest_prob:
+        if random() <= rest_prob:
 
             # jeśli wygenerowaliśmy pauzę na początku to w pierwszej iteracji
             # pomijamy blok generowania pauz, aby nie zaburzyć prawdopodobieństwa
             if initial_pause_generated:
                 initial_pause_generated = False
             else:
-                # czas trwania pauzy
-                ind = randint(0, len(rythmic_values) - 1)
-                rest_duration = rythmic_values[ind]
-
-                # sprawdzamy czy wartość rytmiczna nie wychodzi poza ostatni takt
-                # jeśli wychodzi, to ją zmniejszamy, aż do uzyskania odpowiedniej
-                while 1 / rest_duration[0] > full_time:
-                    ind += 1
-                    rest_duration = rythmic_values[ind]
-
-                file1.write(" r" + rest_duration[1])
+                rest_duration = generate_pause(full_time, rythmic_values, file1)
                 full_time -= 1 / rest_duration[0]
-                print("rest")
+
         else:
             # jeśli nie wygenerowaliśmy pierwszej nuty, bo wcześniej są same pauzy
             # to musimy ją wygenerować
             if not first_note_generated:
-                # pierwsza nuta
-                fnote = Note()
-                fnote.pitch = first_note
-                rvalue = choice(rythmic_values)
-                fnote.time_stamp = rvalue[0]
-                file1.write(fnote.pitch + rvalue[1])
-                print(first_note.replace(" ", ""))
-                full_time -= (1 / fnote.time_stamp)
+
+                f_note_duration = generate_first_note(first_note, rythmic_values, full_time, file1)
+                full_time -= (1 / f_note_duration)
                 first_note_generated = True
 
             # jeśli wcześniej wygenerowano pierwszą nutę, przechodzimy do normalnego działania programu

@@ -1,8 +1,8 @@
 tempo = 4  # /4
-first_note = " c'"  # min "c,,," max "c'''''"
+first_note = " d'"  # min "c,,," max "c'''''"
 bar_count = 4
-lowest_note = " g"  # min "c,,," max "c'''''"
-highest_note = " a''"  # min "c,,," max "c'''''"
+lowest_note = " c'"  # min "c,,," max "c'''''"
+highest_note = " e'"  # min "c,,," max "c'''''"
 rest_prob = 0  # number between 0 and 1
 
 # natural number incl. 0

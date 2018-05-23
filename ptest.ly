@@ -16,4 +16,4 @@
   \remove "Note_heads_engraver" 
   \consists "Completion_heads_engraver" 
   \remove "Rest_engraver" 
-  \consists "Completion_rest_engraver"}{ \time 4/4 c'8 aes'4. c'4. beses'4 beses'1 aeses'16 g''8 aes'8. fis''2. c''8. c''2 des'16\bar "||" }
+  \consists "Completion_rest_engraver"}{ \time 4/4 d'8. e'2 d'2. des'1 fes'2. e'4 disis'2 bisis16\bar "||" }
